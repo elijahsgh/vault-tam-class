@@ -1,0 +1,1 @@
+# vault-tam-class
