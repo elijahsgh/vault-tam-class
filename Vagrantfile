@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
     consul_s1.vm.provision :shell, path: "consul.sh", args: "consul_s1"
   end
 
-	config.vm.define "consul_s2" do |consul_s2|
+  config.vm.define "consul_s2" do |consul_s2|
     consul_s2.vm.network :forwarded_port, guest: 80, host: 4569
     consul_s2.vm.network :forwarded_port, guest: 8500, host: 9502
     consul_s2.vm.network "private_network", ip: "10.1.42.202"
