@@ -21,39 +21,39 @@ Vagrant.configure("2") do |config|
   # config.vm.box_check_update = false
 
   config.vm.define "consul_s1" do |consul_s1|
-	       consul_s1.vm.network :forwarded_port, guest: 80, host: 4568
-	       consul_s1.vm.network :forwarded_port, guest: 8500, host: 9501
-	       consul_s1.vm.network "private_network", ip: "10.1.42.201"
-         consul_s1.vm.provision :shell, path: “consul.sh”, args: “consul_s1”
+	      consul_s1.vm.network :forwarded_port, guest: 80, host: 4568
+	      consul_s1.vm.network :forwarded_port, guest: 8500, host: 9501
+	      consul_s1.vm.network "private_network", ip: "10.1.42.201"
+        consul_s1.vm.provision :shell, path: "consul.sh", args: "consul_s1"
 	end
 
 	config.vm.define "consul_s2" do |consul_s2|
         consul_s2.vm.network :forwarded_port, guest: 80, host: 4569
         consul_s2.vm.network :forwarded_port, guest: 8500, host: 9502
         consul_s2.vm.network "private_network", ip: "10.1.42.202"
-        consul_s1.vm.provision :shell, path: “consul.sh”, args: “consul_s2”
-        end
+        consul_s2.vm.provision :shell, path: "consul.sh", args: "consul_s2"
+  end
 
-        config.vm.define "consul_s3" do |consul_s3|
+  config.vm.define "consul_s3" do |consul_s3|
         consul_s3.vm.network :forwarded_port, guest: 80, host: 4570
         consul_s3.vm.network :forwarded_port, guest: 8500, host: 9503
         consul_s3.vm.network "private_network", ip: "10.1.42.203"
-        consul_s1.vm.provision :shell, path: “consul.sh”, args: “consul_s3”
-        end
+        consul_s3.vm.provision :shell, path: "consul.sh", args: "consul_s3"
+  end
 
 	config.vm.define "vault_s1" do |vault_s1|
         vault_s1.vm.network :forwarded_port, guest: 80, host: 4571
         vault_s1.vm.network :forwarded_port, guest: 8500, host: 9504
         vault_s1.vm.network "private_network", ip: "10.1.42.204"
-        #consul_s1.vm.provision :shell, path: “consul.sh”, args: “consul_s1”
-        end
+        #consul_s1.vm.provision :shell, path: "consul.sh", args: "consul_s1"
+  end
 
 	config.vm.define "vault_s2" do |vault_s2|
         vault_s2.vm.network :forwarded_port, guest: 80, host: 4572
         vault_s2.vm.network :forwarded_port, guest: 8500, host: 9505
         vault_s2.vm.network "private_network", ip: "10.1.42.205"
-        consul_s1.vm.provision :shell, path: “consul.sh”, args: “consul_s1”
-        end
+        #consul_s1.vm.provision :shell, path: "consul.sh", args: "consul_s1"
+  end
 
 
   # Create a forwarded port mapping which allows access to a specific port
