@@ -41,14 +41,14 @@ Vagrant.configure("2") do |config|
     consul_s3.vm.provision :shell, path: "consul.sh", args: "consul_s3"
   end
 
-	config.vm.define "vault_s1" do |vault_s1|
+  config.vm.define "vault_s1" do |vault_s1|
     vault_s1.vm.network :forwarded_port, guest: 80, host: 4571
     vault_s1.vm.network :forwarded_port, guest: 8500, host: 9504
     vault_s1.vm.network "private_network", ip: "10.1.42.204"
     #consul_s1.vm.provision :shell, path: "consul.sh", args: "consul_s1"
   end
 
-	config.vm.define "vault_s2" do |vault_s2|
+  config.vm.define "vault_s2" do |vault_s2|
     vault_s2.vm.network :forwarded_port, guest: 80, host: 4572
     vault_s2.vm.network :forwarded_port, guest: 8500, host: 9505
     vault_s2.vm.network "private_network", ip: "10.1.42.205"
