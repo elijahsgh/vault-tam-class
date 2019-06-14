@@ -10,3 +10,12 @@ if ! [ -L /var/www ]; then
 	ln -fs /vagrant /var/www 
 fi
 
+cp /vagrant/consul /usr/local/bin/consul
+cp /vagrant/vault /usr/local/bin/vault
+mkdir -p /etc/consul.d/{bootstrap,server,client}
+mkdir -p /etc/vault
+useradd --system --home /etc/consul.d --shell /bin/false consul
+useradd --system --home /etc/vault --shell /bin/false vault
+mkdir -p /opt/consul
+chown consul:consul /opt/consul
+
