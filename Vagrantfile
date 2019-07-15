@@ -44,6 +44,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "vault_s1" do |vault_s1|
     vault_s1.vm.network :forwarded_port, guest: 80, host: 4571
     vault_s1.vm.network :forwarded_port, guest: 8500, host: 9504
+    vault_s1.vm.network :forwarded_port, guest: 8200, host: 9604
     vault_s1.vm.network "private_network", ip: "10.1.42.204"
     vault_s1.vm.provision :shell, path: "vault.sh", args: "vault_s1"
   end
@@ -51,6 +52,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "vault_s2" do |vault_s2|
     vault_s2.vm.network :forwarded_port, guest: 80, host: 4572
     vault_s2.vm.network :forwarded_port, guest: 8500, host: 9505
+    vault_s2.vm.network :forwarded_port, guest: 8200, host: 9605
     vault_s2.vm.network "private_network", ip: "10.1.42.205"
     vault_s2.vm.provision :shell, path: "vault.sh", args: "vault_s2"
   end
